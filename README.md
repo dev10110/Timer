@@ -1,6 +1,12 @@
 # Timer
 super simple  header-only c++ timer that you can add to any project.
 
+## Demo
+clone this repo, and run
+```
+g++ -o demo demo.cpp
+./demo
+``` 
 
 ## Usage
 Just add `timer.hpp` to a include location. 
