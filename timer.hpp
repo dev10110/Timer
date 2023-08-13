@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <sstream>
 
 namespace timer {
 
@@ -22,27 +23,38 @@ public:
       print();
   }
 
-  void reset() { _start = clock::now(); }
+  inline void reset() { _start = clock::now(); }
 
-  template <typename T> uint64_t elapsed() {
+  template <typename T> inline uint64_t elapsed() {
     auto dt = std::chrono::duration_cast<T>(clock::now() - _start);
     return dt.count();
   }
 
-  uint64_t elapsed_ms() { return elapsed<milliseconds>(); }
+  inline uint64_t elapsed_ms() { return elapsed<milliseconds>(); }
 
-  uint64_t elapsed_us() { return elapsed<microseconds>(); }
+  inline uint64_t elapsed_us() { return elapsed<microseconds>(); }
 
-  void print(std::string label = "") {
+  inline std::string log(std::string label = "") {
+
     auto us = elapsed_us();
     auto ms = elapsed_ms();
 
-    std::cout << "[ " << _name << " ] ";
-    if (label != "") {
-      std::cout << "[ " << label << " ] ";
-    }
+    std::ostringstream ss;
 
-    std::cout << us << " us (" << ms << " ms)" << std::endl;
+    ss << "[ " << _name << " ] ";
+    if (label != "")
+      ss << "[ " << label << " ] ";
+
+    ss << us << " us (" << ms << " ms)";
+
+    return ss.str();
+  }
+
+  void print(std::string label = "") {
+
+    std::string out = log(label);
+
+    std::cout << out << std::endl;
   }
 
 private:

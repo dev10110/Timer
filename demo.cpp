@@ -23,6 +23,14 @@ int main() {
   // use the built in micro/milliseconds:
   std::cout << "milliseconds: " << timer_.elapsed_ms() << std::endl;
 
+  std::cout << "log: " << timer_.log() << std::endl;
+
+  timer_.print("1");
+  timer_.print("2");
+  timer_.print("3");
+
   // or on destruction of the object it will automatically print the time taken
   // to the console.
+
+  std::cout << std::endl;
 }
