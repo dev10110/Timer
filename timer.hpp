@@ -46,9 +46,9 @@ public:
   }
 
 private:
-  clock::time_point _start;
-  bool _print_on_exit = true;
   std::string _name;
+  bool _print_on_exit = true;
+  clock::time_point _start;
 };
 
 } // namespace timer
